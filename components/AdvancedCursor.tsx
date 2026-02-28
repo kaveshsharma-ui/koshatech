@@ -117,8 +117,8 @@ export default function AdvancedCursor() {
           "color:#fff;font-size:13px;font-weight:700;letter-spacing:0.8px;text-align:center;pointer-events:none;text-transform:uppercase;line-height:1.2;white-space:nowrap;";
         mediaContainer.appendChild(span);
       } else if (type === "video" && src) {
-        cursor.style.width = "150px";
-        cursor.style.height = "150px";
+        cursor.style.width = "200px";
+        cursor.style.height = "200px";
         cursor.style.background = "transparent";
         cursor.style.border = "none";
         cursor.style.borderRadius = "50%";
@@ -140,8 +140,8 @@ export default function AdvancedCursor() {
           "width:100%;height:100%;object-fit:cover;border-radius:50%;";
         mediaContainer.appendChild(video);
       } else if (type === "image" && src) {
-        cursor.style.width = "150px";
-        cursor.style.height = "150px";
+        cursor.style.width = "200px";
+        cursor.style.height = "200px";
         cursor.style.background = "transparent";
         cursor.style.border = "none";
         cursor.style.borderRadius = "50%";

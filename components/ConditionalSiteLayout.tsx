@@ -10,7 +10,7 @@ const QuoteModal = dynamic(
   { ssr: false }
 );
 
-const APP_DEV_PATH = "/app-development-company";
+const EXCLUDED_PATHS = ["/app-development-company", "/lp"];
 
 export function ConditionalSiteLayout({
   children,
@@ -18,9 +18,9 @@ export function ConditionalSiteLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isAppDevPage = pathname?.startsWith(APP_DEV_PATH) ?? false;
+  const isExcluded = EXCLUDED_PATHS.some((p) => pathname?.startsWith(p)) ?? false;
 
-  if (isAppDevPage) {
+  if (isExcluded) {
     return <>{children}</>;
   }
 

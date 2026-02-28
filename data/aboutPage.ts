@@ -32,7 +32,7 @@ export const companyTimeline = {
     {
       id: "1",
       month: "April",
-      year: "2018",
+      year: "2023",
       location: "India",
       title: "Founded in India",
       description:
@@ -40,28 +40,28 @@ export const companyTimeline = {
     },
     {
       id: "2",
-      month: "May",
-      year: "2020",
-      location: "New York, USA",
-      title: "New York Office",
-      description: "We expanded our footprint to better support clients in the US time zone.",
+      month: "Feb",
+      year: "2026",
+      location: "Global Expansion",
+      title: "Going Global",
+      description: "We expanded our footprint to better support clients globally.",
     },
-    {
-      id: "3",
-      month: "Oct",
-      year: "2021",
-      location: "ON, Canada",
-      title: "Canada Office",
-      description: "We grew our team and delivery capacity with partners in Canada.",
-    },
-    {
-      id: "4",
-      month: "July",
-      year: "2025",
-      location: "New Office",
-      title: "Looking forward.",
-      description: "We continue to grow carefully—adding talent and capabilities where it helps our clients most.",
-    },
+    // {
+    //   id: "3",
+    //   month: "Oct",
+    //   year: "2021",
+    //   location: "ON, Canada",
+    //   title: "Canada Office",
+    //   description: "We grew our team and delivery capacity with partners in Canada.",
+    // },
+    // {
+    //   id: "4",
+    //   month: "July",
+    //   year: "2025",
+    //   location: "New Office",
+    //   title: "Looking forward.",
+    //   description: "We continue to grow carefully—adding talent and capabilities where it helps our clients most.",
+    // },
   ] as TimelineItem[],
 };
 

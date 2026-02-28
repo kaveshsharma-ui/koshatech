@@ -88,27 +88,38 @@ export function PortfolioPageClient({ items }: Props) {
 
         // ── large index number: count up
         if (numEl) {
-          const target = parseInt(numEl.dataset.num || "0");
-          gsap.fromTo(numEl,
-            { opacity: 0, scale: 0.6 },
-            {
-              opacity: 1,
-              scale: 1,
-              duration: 0.6,
-              ease: "back.out(1.7)",
-              scrollTrigger: { trigger: numEl, start: "top 85%", once: true },
-              onStart() {
-                gsap.to({ val: 0 }, {
-                  val: target,
-                  duration: 1.2,
-                  ease: "power2.out",
-                  onUpdate() {
-                    if (numEl) numEl.textContent = String(Math.round((this as { val: number }).val)).padStart(2, "0");
-                  },
-                });
-              },
-            }
-          );
+          const target = parseInt(numEl.dataset.num || "0", 10);
+          if (isNaN(target) || target <= 0) {
+            // If invalid, just show the number without animation
+            numEl.textContent = String(numEl.dataset.num || "01").padStart(2, "0");
+          } else {
+            gsap.fromTo(numEl,
+              { opacity: 0, scale: 0.6 },
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+                scrollTrigger: { trigger: numEl, start: "top 85%", once: true },
+                onStart() {
+                  const counter = { val: 0 };
+                  gsap.to(counter, {
+                    val: target,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    onUpdate() {
+                      if (numEl) {
+                        const currentVal = Math.round(counter.val);
+                        if (!isNaN(currentVal) && currentVal >= 0) {
+                          numEl.textContent = String(currentVal).padStart(2, "0");
+                        }
+                      }
+                    },
+                  });
+                },
+              }
+            );
+          }
         }
 
         // ── text lines: staggered blur-fade from bottom
