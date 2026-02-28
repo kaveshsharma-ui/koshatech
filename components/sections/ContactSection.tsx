@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { contactIntro, contactForm, offices } from "@/data";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Toast } from "@/components/Toast";
 // import { LazyReCAPTCHA } from "@/components/LazyReCAPTCHA";
 
 interface ContactSectionProps {
@@ -25,6 +26,7 @@ export function ContactSection({
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -56,7 +58,7 @@ export function ContactSection({
       const data = await response.json();
 
       if (data.success) {
-        alert("Message sent successfully!");
+        setToast({ message: "Message sent successfully!", type: "success" });
         setFormData({
           fullName: "",
           email: "",
@@ -66,10 +68,10 @@ export function ContactSection({
           message: "",
         });
       } else {
-        alert(data.message || "Something went wrong.");
+        setToast({ message: data.message || "Something went wrong.", type: "error" });
       }
     } catch {
-      alert("Server error.");
+      setToast({ message: "Server error. Please try again later.", type: "error" });
     }
 
     setLoading(false);
@@ -248,6 +250,16 @@ export function ContactSection({
           </div>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          isVisible={!!toast}
+          onClose={() => setToast(null)}
+        />
+      )}
     </section>
   );
 }

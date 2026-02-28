@@ -4,6 +4,7 @@ import { useQuoteModal } from "./QuoteModalContext";
 import { contactForm } from "@/data/contact";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Toast } from "@/components/Toast";
 // import { LazyReCAPTCHA } from "@/components/LazyReCAPTCHA";
 // import type ReCAPTCHA from "react-google-recaptcha";
 export function QuoteModal() {
@@ -18,6 +19,7 @@ export function QuoteModal() {
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
@@ -53,7 +55,7 @@ export function QuoteModal() {
       const data = await response.json();
   
       if (data.success) {
-        alert("Form submitted successfully!");
+        setToast({ message: "Form submitted successfully!", type: "success" });
         setFormData({
           fullName: "",
           email: "",
@@ -63,12 +65,16 @@ export function QuoteModal() {
           message: "",
         });
   
-        closeModal();
+        // Close modal after a short delay to show success message
+        setTimeout(() => {
+          closeModal();
+          setToast(null);
+        }, 1500);
       } else {
-        alert(data.message || "Something went wrong.");
+        setToast({ message: data.message || "Something went wrong.", type: "error" });
       }
     } catch (error) {
-      alert("Server error.");
+      setToast({ message: "Server error. Please try again later.", type: "error" });
     }
   
     setLoading(false);
@@ -192,6 +198,16 @@ export function QuoteModal() {
             </form>
           </motion.div>
         </motion.div>
+      )}
+
+      {/* Toast Notification */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          isVisible={!!toast}
+          onClose={() => setToast(null)}
+        />
       )}
     </AnimatePresence>
   );
