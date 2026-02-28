@@ -1,0 +1,67 @@
+import Image from "next/image";
+import Link from "next/link";
+
+export function AboutSection() {
+  return (
+    <section className="bg-[#f3f3f3] py-24 relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 items-center gap-16">
+
+          {/* LEFT IMAGE */}
+          <div className="relative">
+            
+            {/* Decorative Top Shape */}
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-24 h-24 bg-primary-600 rounded-3xl z-10"></div>
+
+            {/* Decorative Bottom Shape */}
+            <div className="absolute bottom-10 -left-6 w-16 h-16 bg-primary-600 rounded-2xl z-10"></div>
+
+            <div className="relative rounded-[40px] overflow-hidden shadow-lg">
+              <Image
+                src="/about-image.jpg"   // replace with your image
+                alt="About Koshatech"
+                width={700}
+                height={500}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT CONTENT */}
+          <div>
+            <h3 className="text-primary-700 font-semibold text-lg">
+              About Us
+            </h3>
+
+            <h2 className="mt-4 text-4xl font-bold text-slate-900">
+              Koshatech
+            </h2>
+
+            <p className="mt-6 text-slate-600 leading-relaxed">
+              Koshatech is your trusted partner for AI-advanced
+              technology solutions, offering a diverse range of services:
+              <span className="font-semibold text-slate-900">
+                {" "}Mobile App Development, Customized Software Development using AI Technologies and models, Website Development, IT Technical Services, and IT Consulting.
+              </span>
+            </p>
+
+            <p className="mt-4 text-slate-600 leading-relaxed">
+              We pride ourselves on delivering tailored solutions to businesses
+              across the Globe, combining modern technology with a commitment
+              to excellence. We specialize in delivering top-tier AI/ML and
+              mobile app development solutions.
+            </p>
+
+            <Link
+              href="/about"
+              className="mt-8 inline-block bg-primary-600 text-white px-8 py-3 rounded-md shadow-md hover:bg-primary-700 transition focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
+            >
+              Read More
+            </Link>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

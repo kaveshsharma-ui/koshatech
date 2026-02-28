@@ -1,0 +1,10 @@
+export { AppDevHeader } from "./AppDevHeader";
+export { AppDevHero } from "./AppDevHero";
+export { AppDevChallenges } from "./AppDevChallenges";
+export { AppDevTestimonials } from "./AppDevTestimonials";
+export { AppDevWhyChoose } from "./AppDevWhyChoose";
+export { AppDevAwards } from "./AppDevAwards";
+export { AppDevPortfolio } from "./AppDevPortfolio";
+export { AppDevTechnologies } from "./AppDevTechnologies";
+export { AppDevIndustries } from "./AppDevIndustries";
+export { AppDevContactFooter } from "./AppDevContactFooter";

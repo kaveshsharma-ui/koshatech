@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Minimal premium (light) */
+  --background: #ffffff;
+  --foreground: #0f172a; /* slate-900 */
+  --muted: #f8fafc; /* slate-50 */
+  --muted-foreground: #475569; /* slate-600 */
+  --border: #e2e8f0; /* slate-200 */
+  --surface: #ffffff;
+
+  /* Brand accent */
+  --primary: #3b82f6; /* primary-500 */
+  --primary-foreground: #0f172a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-slate-900 tracking-tight;
+  }
+  .section-subheading {
+    @apply text-lg text-slate-600 mt-2 max-w-2xl;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-primary-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-white;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-white;
+  }
+  .link-underline {
+    @apply text-primary-700 hover:text-primary-800 underline underline-offset-4;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-card;
+  }
+  .card-hover {
+    @apply transition hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hero above-the-fold: CSS-only reveal to avoid main-thread JS (framer-motion) */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-reveal {
+  opacity: 0;
+  animation: heroReveal 0.4s ease-out forwards;
+}
+.hero-reveal-delay-1 { animation-delay: 0.05s; }
+.hero-reveal-delay-2 { animation-delay: 0.1s; }
+.hero-reveal-delay-3 { animation-delay: 0.15s; }
+.hero-reveal-delay-4 { animation-delay: 0.2s; }
+
+/* Subtle gradient motion for hero accent words */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% auto;
+  animation: gradientShift 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Advanced cursor - hide default cursor when enabled */
+.has-advanced-cursor,
+.has-advanced-cursor body,
+.has-advanced-cursor a,
+.has-advanced-cursor button,
+.has-advanced-cursor [role="button"] {
+  cursor: none !important;
+}
+
+.has-advanced-cursor input,
+.has-advanced-cursor textarea,
+.has-advanced-cursor select {
+  cursor: text !important;
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.group-hover\:rotate-y-180:hover {
+  transform: rotateY(180deg);
+}
+
+/* App Development landing: Swiper pagination on dark hero */
+.appdev-hero .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+}
+.appdev-hero .swiper-pagination-bullet-active {
+  background: #60a5fa;
+  transform: scale(1.2);
+}
+
+/* Portfolio carousel: white pagination on colored slides */
+.portfolio-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+.portfolio-swiper .swiper-pagination-bullet-active {
+  background: #fff;
+  color: #0f172a;
+}
+

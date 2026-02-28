@@ -1,0 +1,2 @@
+# Target modern browsers to reduce legacy JS polyfills (e.g. Array.prototype.at, Object.hasOwn)
+defaults and fully supports es6-module
