@@ -123,8 +123,12 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-br from-primary-100/40 via-accent-light/20 to-transparent rounded-full blur-3xl opacity-60" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 py-14 sm:py-16 md:py-20 lg:py-24 min-h-[85svh] flex items-center">
-        <div className="w-full">
+      <div 
+        data-type="video"
+        data-value="/BuildVideo.mp4"
+        className="relative mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 py-14 sm:py-16 md:py-20 lg:py-24 min-h-[85svh] flex items-center"
+      >
+        <div className="w-full" >
           {/* Two-column grid: text left, image right */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             
@@ -132,6 +136,7 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
             <div className="text-center lg:text-left order-2 lg:order-1">
               {/* ── Headline ── */}
               <h1
+             
                 className="
                   text-4xl xs:text-5xl sm:text-6xl md:text-7xl
                   lg:text-[5rem] xl:text-[6rem] 2xl:text-[6.5rem]
@@ -142,8 +147,7 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                 <div className="flex w-full whitespace-nowrap justify-center lg:justify-start items-center flex-wrap">
                   {/* "Build better" – with cursor image on hover */}
                   <span
-                    data-type="image"
-                    data-value="/HeroSection.jpg"
+                    
                     className="inline-flex items-center gap-2 sm:gap-3 cursor-pointer"
                   >
                     {/* "Build" – plain dark */}
@@ -220,6 +224,7 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                   ref={btn1Ref}
                   onClick={openModal}
                   type="button"
+                  data-type="button"
                   className="
                     group relative w-full sm:w-auto rounded-xl
                     bg-gradient-to-r from-primary-600 to-primary-500
@@ -252,6 +257,7 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                 <Link
                   ref={btn2Ref}
                   href={d.ctaSecondary.href}
+                  data-type="button"
                   className="
                     group w-full sm:w-auto text-center rounded-xl
                     border-2 border-slate-300 bg-white

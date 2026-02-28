@@ -38,28 +38,70 @@ export default function AdvancedCursor() {
       currentY += (mouseY - currentY) * speed;
 
       if (cursor) {
-        cursor.style.transform = `translate3d(${currentX - 12}px, ${currentY - 12}px, 0)`;
+        // Adjust offset based on cursor size (button is wider, so center it)
+        const widthStr = cursor.style.width || "24px";
+        const heightStr = cursor.style.height || "24px";
+        const width = parseFloat(widthStr.replace("px", "")) || 24;
+        const height = parseFloat(heightStr.replace("px", "")) || 24;
+        cursor.style.transform = `translate3d(${currentX - width / 2}px, ${currentY - height / 2}px, 0)`;
       }
       rafId = requestAnimationFrame(animate);
     };
 
     const handleEnter = (target: HTMLElement) => {
-      // New API: data-type=\"image|video\" and data-value=\"/path/to/media\"
+      // New API: data-type=\"image|video|button\" and data-value=\"/path/to/media\" (optional for button)
       const type = (target.dataset.type || "").toLowerCase();
       const src = target.dataset.value;
 
       if (!cursor) return;
 
-      cursor.style.width = "150px";
-      cursor.style.height = "150px";
-      cursor.style.background = "transparent";
-      cursor.style.border = "none";
-      cursor.style.boxShadow = "none";
-      cursor.style.mixBlendMode = "normal";
-
       mediaContainer.innerHTML = "";
 
-      if (type === "video" && src) {
+      if (type === "button") {
+        // Button cursor: oval shape with "Click" text
+        cursor.style.width = "120px";
+        cursor.style.height = "48px";
+        cursor.style.background = "#000000";
+        cursor.style.border = "none";
+        cursor.style.borderRadius = "24px";
+        cursor.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+        cursor.style.mixBlendMode = "normal";
+        cursor.style.display = "flex";
+        cursor.style.alignItems = "center";
+        cursor.style.justifyContent = "center";
+
+        // Update mediaContainer to work with flex layout
+        mediaContainer.style.width = "100%";
+        mediaContainer.style.height = "100%";
+        mediaContainer.style.borderRadius = "24px";
+        mediaContainer.style.display = "flex";
+        mediaContainer.style.alignItems = "center";
+        mediaContainer.style.justifyContent = "center";
+
+        const clickText = document.createElement("span");
+        clickText.textContent = "Click";
+        clickText.style.color = "#ffffff";
+        clickText.style.fontSize = "14px";
+        clickText.style.fontWeight = "600";
+        clickText.style.letterSpacing = "0.5px";
+        mediaContainer.appendChild(clickText);
+      } else if (type === "video" && src) {
+        // Video cursor: circular with video
+        cursor.style.width = "150px";
+        cursor.style.height = "150px";
+        cursor.style.background = "transparent";
+        cursor.style.border = "none";
+        cursor.style.borderRadius = "50%";
+        cursor.style.boxShadow = "none";
+        cursor.style.mixBlendMode = "normal";
+        cursor.style.display = "block";
+
+        // Reset mediaContainer for video/image
+        mediaContainer.style.width = "100%";
+        mediaContainer.style.height = "100%";
+        mediaContainer.style.borderRadius = "50%";
+        mediaContainer.style.display = "block";
+
         const video = document.createElement("video");
         video.src = src;
         video.autoplay = true;
@@ -71,9 +113,23 @@ export default function AdvancedCursor() {
         video.style.objectFit = "cover";
         video.style.borderRadius = "50%";
         mediaContainer.appendChild(video);
-      }
+      } else if (type === "image" && src) {
+        // Image cursor: circular with image
+        cursor.style.width = "150px";
+        cursor.style.height = "150px";
+        cursor.style.background = "transparent";
+        cursor.style.border = "none";
+        cursor.style.borderRadius = "50%";
+        cursor.style.boxShadow = "none";
+        cursor.style.mixBlendMode = "normal";
+        cursor.style.display = "block";
 
-      if (type === "image" && src) {
+        // Reset mediaContainer for video/image
+        mediaContainer.style.width = "100%";
+        mediaContainer.style.height = "100%";
+        mediaContainer.style.borderRadius = "50%";
+        mediaContainer.style.display = "block";
+
         const img = document.createElement("img");
         img.src = src;
         img.style.width = "100%";
@@ -91,25 +147,54 @@ export default function AdvancedCursor() {
       cursor.style.height = "24px";
       cursor.style.background = "#000000";
       cursor.style.border = "none";
+      cursor.style.borderRadius = "50%";
       cursor.style.boxShadow = "none";
       cursor.style.mixBlendMode = "normal";
+      cursor.style.display = "block";
+      cursor.style.alignItems = "";
+      cursor.style.justifyContent = "";
+      
+      // Reset mediaContainer
+      mediaContainer.style.width = "100%";
+      mediaContainer.style.height = "100%";
+      mediaContainer.style.borderRadius = "50%";
+      mediaContainer.style.display = "block";
+      mediaContainer.style.alignItems = "";
+      mediaContainer.style.justifyContent = "";
       mediaContainer.innerHTML = "";
     };
 
-    // Use event delegation for dynamic elements
+    // Track the element currently showing media, so we don't recreate it
+    // every time the cursor moves between child nodes inside the same element.
+    let activeTarget: HTMLElement | null = null;
+
     const handleMouseEnter = (e: MouseEvent) => {
       if (!(e.target instanceof Element)) return;
-      const closest = e.target.closest("[data-type][data-value]");
-      if (closest) {
-        handleEnter(closest as HTMLElement);
+      // Skip if the target or any parent has data-cursor-exclude
+      if (e.target.closest("[data-cursor-exclude]")) return;
+      // Look for elements with data-type (button doesn't need data-value)
+      const closest = e.target.closest("[data-type]") as HTMLElement | null;
+      // Only fire handleEnter when we move into a *different* target
+      if (closest && closest !== activeTarget) {
+        activeTarget = closest;
+        handleEnter(closest);
       }
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
       if (!(e.target instanceof Element)) return;
-      const closest = e.target.closest("[data-type][data-value]");
-      if (closest) {
-        handleLeave();
+      // Skip if the target or any parent has data-cursor-exclude
+      if (e.target.closest("[data-cursor-exclude]")) return;
+      // Look for elements with data-type (button doesn't need data-value)
+      const closest = e.target.closest("[data-type]") as HTMLElement | null;
+      if (closest && closest === activeTarget) {
+        // Only reset when the cursor truly leaves the element —
+        // relatedTarget must be outside the active target.
+        const related = e.relatedTarget as Element | null;
+        if (!related || !closest.contains(related)) {
+          activeTarget = null;
+          handleLeave();
+        }
       }
     };
 
