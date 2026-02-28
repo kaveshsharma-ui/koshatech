@@ -3,7 +3,7 @@ import {
   HeroSection,
   AboutSection,
   ServicesSection,
-  BlogSection,
+  // BlogSection,
 } from "@/components/sections";
 import { homePageServiceItems } from "@/data";
 
@@ -46,7 +46,7 @@ export default function Home() {
       <PortfolioSection maxItems={6} />
       <TestimonialsSection maxItems={4} />
       <ClientsSection />
-      <BlogSection maxItems={3} />
+      {/* <BlogSection maxItems={3} /> */}
       <AchievementsSection />
       <ContactSection />
     </main>

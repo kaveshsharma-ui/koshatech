@@ -38,6 +38,6 @@ export const navigation: NavLink[] = [
     ],
   },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
+  // { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];

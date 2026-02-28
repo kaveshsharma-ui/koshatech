@@ -17,7 +17,7 @@ export const offices = [
   {
     id: "india",
     country: "India",
-    phone: "+91-8960274119",
+    phone: "+91-8924099542",
     address: "Kanpur, Uttar Pradesh, India",
     email: "sales@koshatech.com",
   },
@@ -47,7 +47,7 @@ export const footerOffices = [
   {
     title: "India",
     address: "Kanpur, Uttar Pradesh, India",
-    phone: "+91 8960274119",
+    phone: "+91 8924099542",
     email: "sales@koshatech.com",
   },
   // {

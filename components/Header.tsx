@@ -13,7 +13,7 @@ const NAV_COLORS: Record<string, { text: string; underline: string; bg: string }
   "/about":      { text: "hover:text-orange-500",  underline: "bg-gradient-to-r from-orange-400 to-red-500",    bg: "hover:bg-orange-50" },
   "/services":   { text: "hover:text-red-500",     underline: "bg-gradient-to-r from-red-500 to-pink-500",      bg: "hover:bg-red-50"    },
   "/portfolio":  { text: "hover:text-green-600",   underline: "bg-gradient-to-r from-green-500 to-emerald-500", bg: "hover:bg-green-50"  },
-  "/blog":       { text: "hover:text-blue-500",    underline: "bg-gradient-to-r from-blue-500 to-cyan-500",     bg: "hover:bg-blue-50"   },
+  // "/blog":       { text: "hover:text-blue-500",    underline: "bg-gradient-to-r from-blue-500 to-cyan-500",     bg: "hover:bg-blue-50"   },
   "/contact":    { text: "hover:text-purple-600",  underline: "bg-gradient-to-r from-purple-500 to-indigo-500", bg: "hover:bg-purple-50" },
 };
 

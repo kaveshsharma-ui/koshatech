@@ -1,8 +1,8 @@
-import { blogIntro, blogPosts } from "@/data";
-import { SectionHeading } from "@/components/SectionHeading";
-import { AnimatedPageHero } from "@/components/AnimatedPageHero";
-import { AnimatedBlogCard } from "@/components/AnimatedBlogCard";
-import { AnimatedSection } from "@/components/AnimatedSection";
+// import { blogIntro, blogPosts } from "@/data";
+// import { SectionHeading } from "@/components/SectionHeading";
+// import { AnimatedPageHero } from "@/components/AnimatedPageHero";
+// import { AnimatedBlogCard } from "@/components/AnimatedBlogCard";
+// import { AnimatedSection } from "@/components/AnimatedSection";
 // import QuoteButton from "@/components/QuoteButton";
 
 export const metadata = {
@@ -13,9 +13,9 @@ export const metadata = {
 export default function BlogPage() {
   return (
     <main>
-      <AnimatedPageHero slug="blog" />
+      {/* <AnimatedPageHero slug="blog" /> */}
       
-      <section className="section-padding bg-white">
+      {/* <section className="section-padding bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <SectionHeading title={blogIntro.title} />
@@ -27,7 +27,7 @@ export default function BlogPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

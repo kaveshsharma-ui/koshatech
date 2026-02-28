@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { contactIntro, contactForm, offices } from "@/data";
 import { SectionHeading } from "@/components/SectionHeading";
-import { LazyReCAPTCHA } from "@/components/LazyReCAPTCHA";
+// import { LazyReCAPTCHA } from "@/components/LazyReCAPTCHA";
 
 interface ContactSectionProps {
   intro?: typeof contactIntro;
@@ -24,7 +24,6 @@ export function ContactSection({
     service: "Mobile App Development",
     message: "",
   });
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (
@@ -41,11 +40,6 @@ export function ContactSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!captchaToken) {
-      alert("Please verify that you are not a robot.");
-      return;
-    }
-
     setLoading(true);
 
     try {
@@ -56,7 +50,6 @@ export function ContactSection({
         },
         body: JSON.stringify({
           ...formData,
-          captchaToken,
         }),
       });
 
@@ -72,9 +65,8 @@ export function ContactSection({
           service: "Mobile App Development",
           message: "",
         });
-        setCaptchaToken(null);
       } else {
-        alert("Captcha failed or something went wrong.");
+        alert(data.message || "Something went wrong.");
       }
     } catch {
       alert("Server error.");
@@ -198,10 +190,6 @@ export function ContactSection({
                   className="mt-1 block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-0"
                 />
               </div>
-              <LazyReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                onChange={(token) => setCaptchaToken(token)}
-              />
               {/* Submit */}
               <button
                 type="submit"

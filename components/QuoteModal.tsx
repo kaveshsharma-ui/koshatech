@@ -2,10 +2,10 @@
 
 import { useQuoteModal } from "./QuoteModalContext";
 import { contactForm } from "@/data/contact";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LazyReCAPTCHA } from "@/components/LazyReCAPTCHA";
-import type ReCAPTCHA from "react-google-recaptcha";
+// import { LazyReCAPTCHA } from "@/components/LazyReCAPTCHA";
+// import type ReCAPTCHA from "react-google-recaptcha";
 export function QuoteModal() {
   const { isOpen, closeModal } = useQuoteModal();
 
@@ -17,8 +17,6 @@ export function QuoteModal() {
     service: "Mobile App Development",
     message: "",
   });
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -41,11 +39,6 @@ export function QuoteModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    if (!captchaToken) {
-      alert("Please verify that you are not a robot.");
-      return;
-    }
-  
     setLoading(true);
   
     try {
@@ -54,7 +47,6 @@ export function QuoteModal() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          captchaToken,
         }),
       });
   
@@ -71,12 +63,9 @@ export function QuoteModal() {
           message: "",
         });
   
-        recaptchaRef.current?.reset();
-        setCaptchaToken(null);
-  
         closeModal();
       } else {
-        alert("Captcha failed or something went wrong.");
+        alert(data.message || "Something went wrong.");
       }
     } catch (error) {
       alert("Server error.");
@@ -193,15 +182,6 @@ export function QuoteModal() {
                   className="w-full border border-slate-300 p-3 rounded-lg text-slate-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
                 />
               </div>
-<div className="mt-2">
-  <LazyReCAPTCHA
-    ready={isOpen}
-    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-    onChange={(token) => setCaptchaToken(token)}
-    onExpired={() => setCaptchaToken(null)}
-    recaptchaRef={recaptchaRef}
-  />
-</div>
               <button
                 type="submit"
                 disabled={loading}

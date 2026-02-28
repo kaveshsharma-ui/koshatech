@@ -12,42 +12,12 @@ export async function POST(req: Request) {
       countryCode,
       service,
       message,
-      captchaToken, // ✅ Get token from frontend
     } = body;
 
     // ✅ Validate required fields
     if (!fullName || !email || !phone || !service) {
       return NextResponse.json(
         { success: false, message: "Missing required fields" },
-        { status: 400 }
-      );
-    }
-
-    // ✅ Check captcha token exists
-    if (!captchaToken) {
-      return NextResponse.json(
-        { success: false, message: "Captcha token missing" },
-        { status: 400 }
-      );
-    }
-
-    // ✅ Verify CAPTCHA with Google
-    const verifyRes = await fetch(
-      "https://www.google.com/recaptcha/api/siteverify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`,
-      }
-    );
-
-    const verifyData = await verifyRes.json();
-
-    if (!verifyData.success) {
-      return NextResponse.json(
-        { success: false, message: "Captcha verification failed" },
         { status: 400 }
       );
     }
@@ -97,7 +67,7 @@ export async function POST(req: Request) {
     const safeService = escapeHtml(service);
     const safeMessage = message ? escapeHtml(message).replace(/\n/g, "<br>") : "";
 
-    // ✅ Send email only if captcha passed
+    // ✅ Send email
     await transporter.sendMail({
       from: `"Website Contact" <${fromEmail}>`,
       to: recipientEmail,
