@@ -24,6 +24,8 @@ export function PortfolioSection({
 }: PortfolioSectionProps) {
   useSwiperStyles();
   const list = items.slice(0, maxItems);
+  // Duplicate slides so Swiper loop mode has enough items for smooth infinite scroll
+  const loopList = list.length > 0 ? [...list, ...list, ...list] : list;
 
   return (
     <section className="py-20 bg-white overflow-hidden">
@@ -51,9 +53,9 @@ export function PortfolioSection({
           grabCursor={false}
           allowTouchMove={false}
         >
-          {list.map((item) => (
+          {loopList.map((item, idx) => (
             <SwiperSlide
-              key={item.id}
+              key={`${item.id}-${idx}`}
               className="!w-[300px]" // fixed width for smooth continuous scroll
             >
               <Link

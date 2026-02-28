@@ -5,7 +5,7 @@ const logos = [
   "/home/client/omAnmol.jpg",
   "/home/client/frontier.png",
   "/home/client/discord.png",
-  "/home/client/cranes-24.jpg",
+  "/home/client/Cranes-24.jpg",
   "/home/client/google.png",
   "/home/client/reksoft.png",
   "/home/client/basecamp.png",

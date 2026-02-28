@@ -43,6 +43,9 @@ export function LazyReCAPTCHA({
     return () => observer.disconnect();
   }, [ready]);
 
+  // Don't render if sitekey is missing (prevents reCAPTCHA crash in dev/staging)
+  if (!props.sitekey) return null;
+
   return (
     <div ref={containerRef} className="flex justify-center min-h-[78px]">
       {shouldLoad ? (

@@ -98,16 +98,16 @@ export default function AdvancedCursor() {
 
     // Use event delegation for dynamic elements
     const handleMouseEnter = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const closest = target.closest("[data-type][data-value]");
+      if (!(e.target instanceof Element)) return;
+      const closest = e.target.closest("[data-type][data-value]");
       if (closest) {
         handleEnter(closest as HTMLElement);
       }
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const closest = target.closest("[data-type][data-value]");
+      if (!(e.target instanceof Element)) return;
+      const closest = e.target.closest("[data-type][data-value]");
       if (closest) {
         handleLeave();
       }

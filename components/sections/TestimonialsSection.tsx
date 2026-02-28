@@ -39,6 +39,8 @@ export function TestimonialsSection({
 }: TestimonialsSectionProps) {
   useSwiperStyles();
   const list = items.slice(0, maxItems);
+  // Loop requires more slides than slidesPerView (max 2); need at least 5 for safe loop
+  const canLoop = list.length >= 5;
 
   return (
     <section className="py-16 sm:py-20 lg:py-28 bg-slate-50">
@@ -60,12 +62,12 @@ export function TestimonialsSection({
             modules={[Autoplay]}
             spaceBetween={20}
             slidesPerView={1}
-            loop
+            loop={canLoop}
             autoplay={{ delay: 2500, disableOnInteraction: false }}
             breakpoints={{
               640: { slidesPerView: 1, spaceBetween: 20 },
-              768: { slidesPerView: 2, spaceBetween: 24 },
-              1280: { slidesPerView: 2, spaceBetween: 30 },
+              768: { slidesPerView: list.length >= 2 ? 2 : 1, spaceBetween: 24 },
+              1280: { slidesPerView: list.length >= 2 ? 2 : 1, spaceBetween: 30 },
             }}
           >
             {list.map((t, i) => (
