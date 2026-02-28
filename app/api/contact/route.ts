@@ -52,31 +52,83 @@ export async function POST(req: Request) {
       );
     }
 
-    // ✅ Create transporter (Gmail SMTP)
+    // ✅ Create transporter (Hostinger SMTP configuration)
+    // Expected env vars:
+    // SMTP_HOST=smtp.hostinger.com
+    // SMTP_PORT=465
+    // SMTP_SECURE=true
+    // SMTP_USER=sales@koshatech.com
+    // SMTP_PASSWORD=your_email_password
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      host: process.env.SMTP_HOST || "smtp.hostinger.com",
+      port: parseInt(process.env.SMTP_PORT || "465"),
+      secure: process.env.SMTP_SECURE === "true" || process.env.SMTP_PORT === "465",
       auth: {
-        user: process.env.ADMIN_EMAIL,
-        pass: process.env.ADMIN_EMAIL_PASSWORD,
+        user: process.env.SMTP_USER || process.env.ADMIN_EMAIL,
+        pass: process.env.SMTP_PASSWORD || process.env.ADMIN_EMAIL_PASSWORD,
       },
     });
 
+    // ✅ Get recipient email (use SMTP_USER or ADMIN_EMAIL)
+    const recipientEmail = process.env.SMTP_USER || process.env.ADMIN_EMAIL;
+    const fromEmail = process.env.SMTP_USER || process.env.ADMIN_EMAIL;
+
+    if (!recipientEmail) {
+      return NextResponse.json(
+        { success: false, message: "Email configuration missing" },
+        { status: 500 }
+      );
+    }
+
+    // ✅ Escape HTML to prevent XSS
+    const escapeHtml = (text: string) => {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
+
+    const safeFullName = escapeHtml(fullName);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeCountryCode = escapeHtml(countryCode);
+    const safeService = escapeHtml(service);
+    const safeMessage = message ? escapeHtml(message).replace(/\n/g, "<br>") : "";
+
     // ✅ Send email only if captcha passed
     await transporter.sendMail({
-      from: `"Website Contact" <${process.env.ADMIN_EMAIL}>`,
-      to: process.env.ADMIN_EMAIL,
+      from: `"Website Contact" <${fromEmail}>`,
+      to: recipientEmail,
+      replyTo: email, // Allow replying directly to the form submitter
       subject: `New Contact Form Submission from ${fullName}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Full Name:</strong> ${fullName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${countryCode} ${phone}</p>
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message || "No message provided"}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">
+            New Contact Form Submission
+          </h2>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <p style="margin: 10px 0;"><strong style="color: #555;">Full Name:</strong> <span style="color: #333;">${safeFullName}</span></p>
+            <p style="margin: 10px 0;"><strong style="color: #555;">Email:</strong> <a href="mailto:${safeEmail}" style="color: #3b82f6; text-decoration: none;">${safeEmail}</a></p>
+            <p style="margin: 10px 0;"><strong style="color: #555;">Phone:</strong> <span style="color: #333;">${safeCountryCode} ${safePhone}</span></p>
+            <p style="margin: 10px 0;"><strong style="color: #555;">Service:</strong> <span style="color: #333;">${safeService}</span></p>
+            ${safeMessage ? `<p style="margin: 10px 0;"><strong style="color: #555;">Message:</strong></p><p style="color: #333; background: white; padding: 15px; border-radius: 4px; border-left: 4px solid #3b82f6;">${safeMessage}</p>` : ''}
+          </div>
+          <p style="margin-top: 20px; color: #666; font-size: 12px;">
+            This email was sent from your website contact form.
+          </p>
+        </div>
       `,
+      text: `
+New Contact Form Submission
+
+Full Name: ${fullName}
+Email: ${email}
+Phone: ${countryCode} ${phone}
+Service: ${service}
+${message ? `Message:\n${message}` : ''}
+      `.trim(),
     });
 
     return NextResponse.json({ success: true });

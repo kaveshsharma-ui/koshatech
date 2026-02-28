@@ -114,17 +114,14 @@ html.lenis {
 }
 
 /* Advanced cursor - hide default cursor when enabled */
-.has-advanced-cursor,
-.has-advanced-cursor body,
-.has-advanced-cursor a,
-.has-advanced-cursor button,
-.has-advanced-cursor [role="button"] {
+body.has-advanced-cursor,
+body.has-advanced-cursor * {
   cursor: none !important;
 }
 
-.has-advanced-cursor input,
-.has-advanced-cursor textarea,
-.has-advanced-cursor select {
+body.has-advanced-cursor input,
+body.has-advanced-cursor textarea,
+body.has-advanced-cursor select {
   cursor: text !important;
 }
 

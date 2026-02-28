@@ -17,24 +17,28 @@ const COLOR_SCHEMES = [
     text: "text-white",
     description: "text-blue-50",
     border: "border-blue-400/30",
+    cursorColor: "#3b82f6", // blue-500
   },
   {
     gradient: "from-green-500 to-teal-600",
     text: "text-white",
     description: "text-green-50",
     border: "border-green-400/30",
+    cursorColor: "#22c55e", // green-500
   },
   {
     gradient: "from-orange-500 to-pink-600",
     text: "text-white",
     description: "text-orange-50",
     border: "border-orange-400/30",
+    cursorColor: "#f97316", // orange-500
   },
   {
     gradient: "from-yellow-500 to-amber-600",
     text: "text-white",
     description: "text-yellow-50",
     border: "border-yellow-400/30",
+    cursorColor: "#eab308", // yellow-500
   },
 ];
 
@@ -159,8 +163,9 @@ export function ServicesSection({
             return (
               <div
                 key={item.id}
-                data-type="image"
-                data-value="/HeroSection.jpg"
+                data-type="card"
+                data-color={colors.cursorColor}
+                data-value={item.title}
                 className={`
                   bg-gradient-to-br ${colors.gradient}
                   border-2 ${colors.border}

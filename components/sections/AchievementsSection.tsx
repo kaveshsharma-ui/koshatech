@@ -82,8 +82,6 @@ export function AchievementsSection() {
             {[...partners, ...partners].map((src, index) => (
               <div
                 key={index}
-                data-type="image"
-                data-value={src}
                 className="relative mx-4 h-20 w-52 flex-shrink-0 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow flex items-center justify-center cursor-default"
               >
                 <Image

@@ -34,5 +34,34 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# koshatech
-# koshatech
+
+## Email Configuration (Contact Form)
+
+The contact form is configured to use **Hostinger SMTP** settings. To configure:
+
+1. Create a `.env.local` file in the root directory
+2. Add the following environment variables:
+
+```env
+# Hostinger SMTP Settings
+SMTP_HOST=smtp.hostinger.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=sales@koshatech.com
+SMTP_PASSWORD=your_email_password
+
+# reCAPTCHA Configuration
+RECAPTCHA_SECRET_KEY=your-recaptcha-secret-key
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your-recaptcha-site-key
+```
+
+**Important:** Replace `your_email_password` with the actual password for `sales@koshatech.com`.
+
+### Hostinger SMTP Details:
+- **SMTP Host:** `smtp.hostinger.com`
+- **SMTP Port:** `465` (SSL)
+- **SMTP Secure:** `true`
+- **Email:** `sales@koshatech.com`
+- **Password:** Your email account password (get from Hostinger hPanel)
+
+The form will send emails to `sales@koshatech.com` when submissions are received.

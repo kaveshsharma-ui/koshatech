@@ -124,8 +124,6 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
       </div>
 
       <div 
-        data-type="video"
-        data-value="/BuildVideo.mp4"
         className="relative mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 py-14 sm:py-16 md:py-20 lg:py-24 min-h-[85svh] flex items-center"
       >
         <div className="w-full" >
@@ -133,7 +131,11 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             
             {/* ── LEFT: Text Content ── */}
-            <div className="text-center lg:text-left order-2 lg:order-1">
+            <div 
+              data-type="video"
+              data-value="/BuildVideo.mp4"
+              className="text-center lg:text-left order-2 lg:order-1"
+            >
               {/* ── Headline ── */}
               <h1
              
@@ -224,7 +226,9 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                   ref={btn1Ref}
                   onClick={openModal}
                   type="button"
-                  data-type="button"
+                  // data-type="button"
+                  // data-value="Click"
+                  // data-color="#000000"
                   className="
                     group relative w-full sm:w-auto rounded-xl
                     bg-gradient-to-r from-primary-600 to-primary-500
@@ -257,7 +261,9 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                 <Link
                   ref={btn2Ref}
                   href={d.ctaSecondary.href}
-                  data-type="button"
+                  // data-type="button"
+                  // data-value="Click"
+                  // data-color="#000000"
                   className="
                     group w-full sm:w-auto text-center rounded-xl
                     border-2 border-slate-300 bg-white
@@ -291,6 +297,8 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
             {/* ── RIGHT: Image ── */}
             <div
               ref={imageRef}
+              data-type="video"
+              data-value="/BuildVideo.mp4"
               className="relative order-1 lg:order-2 w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-full lg:min-h-[600px] overflow-hidden"
             >
               <Image
