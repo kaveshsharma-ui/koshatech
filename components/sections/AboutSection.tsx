@@ -119,8 +119,7 @@ export function AboutSection() {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/about"
-                data-type="image"
-                data-value="/home/aboutUs.jpg"
+                data-cursor-exclude
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/25 hover:from-primary-700 hover:to-primary-600 transition-all duration-300"
               >
                 Learn more about {site.name}
@@ -130,8 +129,7 @@ export function AboutSection() {
               </Link>
               <Link
                 href="/contact"
-                data-type="image"
-                data-value="/HeroSection.jpg"
+                data-cursor-exclude
                 className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-7 py-3.5 text-sm font-semibold text-slate-700 hover:border-primary-400 hover:bg-slate-50 transition-all duration-300"
               >
                 Talk to us

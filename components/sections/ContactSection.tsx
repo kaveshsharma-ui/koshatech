@@ -197,6 +197,7 @@ export function ContactSection({
                 type="submit"
                 disabled={loading}
                 className="relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 disabled:opacity-60"
+                data-cursor-exclude
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   {loading ? "Sending…" : formLabels.submitLabel}

@@ -17,10 +17,10 @@ export function ServicePageHero({ data }: Props) {
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-slate-600">{data.tagline}</p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link href={data.ctaPrimary.href} className="btn-primary">
+          <Link href={data.ctaPrimary.href} className="btn-primary" data-cursor-exclude>
             {data.ctaPrimary.label}
           </Link>
-          <Link href={data.ctaSecondary.href} className="btn-secondary">
+          <Link href={data.ctaSecondary.href} className="btn-secondary" data-cursor-exclude>
             {data.ctaSecondary.label}
           </Link>
         </div>

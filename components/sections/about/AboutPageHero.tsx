@@ -14,10 +14,10 @@ export function AboutPageHero() {
         <p className="mt-2 text-slate-600">{d.eyebrow}</p>
         <h1 className="mt-4 text-4xl font-bold text-slate-900 md:text-5xl">{d.heading}</h1>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link href={d.ctaPrimary.href} className="btn-primary">
+          <Link href={d.ctaPrimary.href} className="btn-primary" data-cursor-exclude>
             {d.ctaPrimary.label}
           </Link>
-          <Link href={d.ctaSecondary.href} className="btn-secondary">
+          <Link href={d.ctaSecondary.href} className="btn-secondary" data-cursor-exclude>
             {d.ctaSecondary.label}
           </Link>
         </div>

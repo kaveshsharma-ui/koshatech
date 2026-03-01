@@ -201,7 +201,7 @@ export function Header() {
           >
             <span className="text-slate-600">IN</span> {site.phone}
           </a>
-          <button onClick={openModal} className="btn-primary text-sm">
+          <button onClick={openModal} className="btn-primary text-sm" data-cursor-exclude>
             Get a Quote
           </button>
         </div>
@@ -212,6 +212,7 @@ export function Header() {
           className="inline-flex items-center justify-center rounded-xl p-2 text-slate-700 hover:bg-slate-100 lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          data-cursor-exclude
         >
           <svg
             className="h-6 w-6"
@@ -246,6 +247,7 @@ export function Header() {
             aria-label="Close menu"
             className="fixed inset-0 z-50 bg-black/30 "
             onClick={() => setMobileOpen(false)}
+            data-cursor-exclude
           />
           <div className="fixed inset-x-0 top-20 z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-slate-200 bg-white overscroll-contain">
             <nav className="container mx-auto flex flex-col gap-1 px-4 py-4">
@@ -283,6 +285,7 @@ export function Header() {
                     className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-semibold transition-colors ${
                       isActive ? "bg-slate-100 text-slate-900" : `text-slate-700 ${colors.bg}`
                     }`}
+                    data-cursor-exclude
                   >
                     <span className="flex items-center gap-2">
                       <span className={`h-2 w-2 shrink-0 rounded-full ${colors.underline.replace("bg-gradient-to-r", "").split(" ")[1] ?? "bg-slate-400"}`} />
@@ -329,6 +332,7 @@ export function Header() {
                 openModal();
               }}
               className="btn-primary mt-2 w-full"
+              data-cursor-exclude
             >
               Get a Quote
             </button>

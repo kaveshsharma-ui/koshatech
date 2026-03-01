@@ -253,6 +253,7 @@ export function PortfolioPageClient({ items }: Props) {
                        shadow-lg shadow-primary-500/30
                        transition-all duration-300 hover:bg-primary-700 hover:-translate-y-0.5
                        hover:shadow-primary-500/50"
+            data-cursor-exclude
           >
             {"Let's Talk"}
           </Link>
@@ -261,6 +262,7 @@ export function PortfolioPageClient({ items }: Props) {
             className="pf-hero-btn rounded-xl border-2 border-slate-300 bg-white
                        px-8 py-4 text-sm font-semibold text-slate-800 shadow-sm
                        transition-all duration-300 hover:border-primary-400 hover:-translate-y-0.5"
+            data-cursor-exclude
           >
             Contact Us
           </Link>

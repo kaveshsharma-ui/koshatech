@@ -42,7 +42,7 @@ export function ServiceEmpoweringSection({ empowering, techStack }: Props) {
             {empowering.ctaHeading}
           </h4>
           <p className="mt-2 text-slate-600">{empowering.ctaSubtext}</p>
-          <Link href={empowering.ctaHref} className="btn-primary mt-6 inline-block">
+          <Link href={empowering.ctaHref} className="btn-primary mt-6 inline-block" data-cursor-exclude>
             Get Started
           </Link>
         </div>
@@ -70,7 +70,7 @@ export function ServiceEmpoweringSection({ empowering, techStack }: Props) {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <Link href={techStack.ctaHref} className="btn-secondary">
+            <Link href={techStack.ctaHref} className="btn-secondary" data-cursor-exclude>
               {techStack.ctaLabel}
             </Link>
           </div>

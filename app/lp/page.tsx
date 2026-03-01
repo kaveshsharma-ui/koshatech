@@ -542,6 +542,7 @@ export default function LandingPage() {
                   type="submit"
                   disabled={loading}
                   className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 hover:from-blue-500 hover:to-violet-500 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  data-cursor-exclude
                 >
                   <span className="flex items-center justify-center gap-2">
                     {loading ? (
@@ -600,6 +601,7 @@ export default function LandingPage() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-xl shadow-green-500/40 transition-all duration-300 hover:scale-110 hover:shadow-green-500/60"
+        data-cursor-exclude
       >
         {/* pulse ring */}
         <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-25" />

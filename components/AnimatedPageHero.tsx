@@ -40,7 +40,7 @@ export function AnimatedPageHero({ slug }: PageHeroProps) {
       {(data.ctaPrimary) && (
         <div className="mt-8 flex justify-center gap-4">
           {data.ctaPrimary && (
-            <Link href={data.ctaPrimary.href} className="btn-primary">
+            <Link href={data.ctaPrimary.href} className="btn-primary" data-cursor-exclude>
               {data.ctaPrimary.label}
             </Link>
           )}

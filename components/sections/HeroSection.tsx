@@ -226,9 +226,7 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                   ref={btn1Ref}
                   onClick={openModal}
                   type="button"
-                  // data-type="button"
-                  // data-value="Click"
-                  // data-color="#000000"
+                  data-cursor-exclude
                   className="
                     group relative w-full sm:w-auto rounded-xl
                     bg-gradient-to-r from-primary-600 to-primary-500
@@ -261,9 +259,7 @@ export function HeroSection({ data = hero }: HeroSectionProps) {
                 <Link
                   ref={btn2Ref}
                   href={d.ctaSecondary.href}
-                  // data-type="button"
-                  // data-value="Click"
-                  // data-color="#000000"
+                  data-cursor-exclude
                   className="
                     group w-full sm:w-auto text-center rounded-xl
                     border-2 border-slate-300 bg-white
