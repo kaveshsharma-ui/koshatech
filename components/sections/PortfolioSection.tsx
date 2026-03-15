@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { portfolioIntro, portfolioItems } from "@/data";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -58,8 +57,7 @@ export function PortfolioSection({
               key={`${item.id}-${idx}`}
               className="!w-[300px]" // fixed width for smooth continuous scroll
             >
-              <Link
-                href={`/portfolio/${item.slug}`}
+              <div
                 data-type="image"
                 data-value={item.image || "/HeroSection.jpg"}
                 className="group block overflow-hidden rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition bg-white"
@@ -84,7 +82,7 @@ export function PortfolioSection({
                     {item.tags.join(", ")}
                   </p>
                 </div>
-              </Link>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

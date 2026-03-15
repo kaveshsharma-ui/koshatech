@@ -311,31 +311,16 @@ export function PortfolioPageClient({ items }: Props) {
                       {/* tags */}
                       {item.tags.length > 0 && (
                         <div className="pf-line flex flex-wrap gap-2">
-                          {item.tags.map((tag, i) =>
-                            item.externalLink ? (
-                              <a
-                                key={i}
-                                href={item.externalLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center rounded-full
-                                           bg-primary-50 border border-primary-200
-                                           px-4 py-1.5 text-xs font-semibold text-primary-700
-                                           hover:bg-primary-100 transition-colors"
-                              >
-                                {tag}
-                              </a>
-                            ) : (
-                              <span
-                                key={i}
-                                className="inline-flex items-center rounded-full
-                                           bg-slate-100 border border-slate-200
-                                           px-4 py-1.5 text-xs font-semibold text-slate-600"
-                              >
-                                {tag}
-                              </span>
-                            )
-                          )}
+                          {item.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="inline-flex items-center rounded-full
+                                         bg-slate-100 border border-slate-200
+                                         px-4 py-1.5 text-xs font-semibold text-slate-600"
+                            >
+                              {tag}
+                            </span>
+                          ))}
                         </div>
                       )}
 
@@ -351,25 +336,6 @@ export function PortfolioPageClient({ items }: Props) {
                                       px-4 py-2.5 inline-block">
                           {item.stats}
                         </p>
-                      )}
-
-                      {item.externalLink && (
-                        <a
-                          href={item.externalLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="pf-line group inline-flex items-center gap-2 text-sm font-semibold
-                                     text-primary-600 hover:text-primary-800 transition-colors"
-                        >
-                          View Live Project
-                          <svg
-                            className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
                       )}
                     </div>
 
