@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const QuoteModal = dynamic(
   () => import("@/components/QuoteModal").then((m) => ({ default: m.QuoteModal })),
@@ -30,6 +31,7 @@ export function ConditionalSiteLayout({
       {children}
       <Footer />
       <QuoteModal />
+      <FloatingWhatsApp />
     </>
   );
 }

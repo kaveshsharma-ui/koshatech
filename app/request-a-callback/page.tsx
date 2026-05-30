@@ -33,7 +33,7 @@ export default function RequestCallbackPage() {
                 href="https://api.whatsapp.com/send/?phone=918924099542&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-md bg-primary-600 px-10 py-4 text-white text-lg shadow-md transition hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
+                className="inline-flex items-center gap-3 rounded-md bg-[#25D366] px-10 py-4 text-white text-lg shadow-md transition hover:bg-[#20BD5A] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
